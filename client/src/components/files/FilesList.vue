@@ -1,3 +1,3 @@
 <template>
-  <h2>Files List</h2>
+  <h2>Files List View</h2>
 </template>
