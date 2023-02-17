@@ -1,24 +1,23 @@
-import express, { Express } from 'express';
+import express, { Express, NextFunction , Request, Response} from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 
 import routes from './routes';
 
 const main = () => {
   const app: Express = express();
-  const allowedOrigins = ['*'];
-
-  const options: cors.CorsOptions = {
-    origin: allowedOrigins,
-    methods: "GET,HEAD,POST,READ",
-  }
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(cors(options));
 
-  app.use('/', routes.mainRoutes);
-  app.use('/files', routes.filesRoutes);
+  app.use((_: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Contrl-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
+  app.use('/api/', routes.mainRoutes);
+  app.use('/api/files', routes.filesRoutes);
 
   app.listen(5000, () => {
     console.log('server listen on port 5000');
