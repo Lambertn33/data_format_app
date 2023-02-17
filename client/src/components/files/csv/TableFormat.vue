@@ -43,17 +43,16 @@
     },
 
     methods: {
-      async fetchCsvFileContent() {
-        this.isFetching = true;
-        const response = await this.$store.dispatch('fetchFileContents', filesConstants.csv);
-        const csvFileContents = await response.data;
-        this.csvFileContents = csvFileContents;
-        this.isFetching = false;
-      }, 
-    },
-
-    mounted() {
+       async fetchCsvFileContent() {
+         this.isFetching = true;
+         await this.$store.dispatch('fetchFileContents', filesConstants.csv);
+         this.isFetching = false;
+       }, 
+     },
+ 
+     mounted() {
       this.fetchCsvFileContent();
-    },
+      this.csvFileContents = this.$store.getters.getCsvFileContents;
+     },
   }
 </script>

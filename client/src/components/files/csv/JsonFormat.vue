@@ -17,24 +17,20 @@
        return {
          isFetching: false,
          csvFileContents: [],
-         csvTableHeaders: [
-           '#', 'Name', 'Address', 'Post code', 'Phone', 'Credit Limit', 'Birthday'
-         ]
        }
      },
  
      methods: {
        async fetchCsvFileContent() {
          this.isFetching = true;
-         const response = await this.$store.dispatch('fetchFileContents', filesConstants.csv);
-         const csvFileContents = await response.data;
-         this.csvFileContents = csvFileContents;
+         await this.$store.dispatch('fetchFileContents', filesConstants.csv);
          this.isFetching = false;
        }, 
      },
  
      mounted() {
-       this.fetchCsvFileContent();
+      this.fetchCsvFileContent();
+      this.csvFileContents = this.$store.getters.getCsvFileContents;
      },
    }
  </script>
