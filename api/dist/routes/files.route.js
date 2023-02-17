@@ -1,12 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const files_helper_1 = require("../helpers/files.helper");
+const files_controller_1 = require("../controllers/files.controller");
+const files_constants_1 = __importDefault(require("../constants/files.constants"));
 const router = (0, express_1.Router)();
-router.get('/', (req, res) => {
-    return (0, files_helper_1.readFileHelper)('csvfFileExample.csv', res);
-});
-router.post('/upload', files_helper_1.uploadFileHelper.single('csvfile'), (req, res) => {
-    res.status(200).json({ message: 'file uploaded successfully' });
-});
+router.get('/read-csv', (0, files_controller_1.readFile)(files_constants_1.default.csvFileName));
+router.get('/read-prn', (0, files_controller_1.readFile)(files_constants_1.default.prnFileName));
 exports.default = router;

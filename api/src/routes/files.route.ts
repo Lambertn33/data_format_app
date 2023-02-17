@@ -1,15 +1,13 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
-import { uploadFileHelper, readFileHelper } from '../helpers/files.helper';
+import { readFile } from '../controllers/files.controller';
+
+import filesConstants from '../constants/files.constants';
 
 const router: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  return readFileHelper('csvfFileExample.csv', res);
-});
+router.get('/read-csv', readFile(filesConstants.csvFileName));
 
-router.post('/upload', uploadFileHelper.single('csvfile'), (req: Request, res: Response) => {
-  res.status(200).json({ message: 'file uploaded successfully' });
-});
+router.get('/read-prn', readFile(filesConstants.prnFileName));
 
 export default router;
