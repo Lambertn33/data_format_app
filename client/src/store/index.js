@@ -18,8 +18,9 @@ const store = createStore({
     fetchFileContents({ commit }, fileType) {
       if (fileType === filesConstants.csv) {
         return filesServices.readCsvFile().then(
-          data => {
-            return Promise.resolve(data);
+          response => {
+            commit('setCsvFileContents', response.data);
+            return Promise.resolve(response);
           },
           error => {
             return Promise.reject(error);
@@ -27,14 +28,34 @@ const store = createStore({
         );
       } else {
         return filesServices.readPrnFile().then(
-          data => {
-            return Promise.resolve(data);
+          response => {
+            commit('setPrnFileContents', response.data);
+            return Promise.resolve(response);
           },
           error => {
             return Promise.reject(error);
           }
         );
       }
+    }
+  },
+
+  mutations: {
+    setCsvFileContents(state, contents) {
+      state.csvFileContents = contents;
+    },
+
+    setPrnFileContents(state, contents) {
+      state.prnFileContents = contents;
+    }
+  },
+
+  getters: {
+    getCsvFileContents(state) {
+      return state.csvFileContents;
+    },
+    getPrnFileContents(state) {
+      return state.prnFileContents;
     }
   }
 });
