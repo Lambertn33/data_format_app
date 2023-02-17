@@ -1,14 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import FilesAddView from './components/files/FilesAdd.vue';
+import FilesList2View from './components/files/FilesList2.vue';
 
 import FilesListView from './components/files/FilesList.vue'
 
 const router = createRouter({ 
   history: createWebHistory(),
   routes: [
-    { path: '/', component: FilesAddView },
-    { path: '/register', component: FilesListView },
+    { path: "/", redirect: "/files/csv" },
+    { path: '/files', children: [
+      { path: 'csv', component: FilesList2View, name: 'readCsv' },
+      { path: 'prn', component: FilesListView, name: 'readPrn' },
+    ] }
   ],
   linkActiveClass: 'active'
 });
