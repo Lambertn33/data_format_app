@@ -27,7 +27,7 @@
           },
           {
             name: 'Read CSV file',
-            href: "/files/csv",
+            href: "/files/csv/table",
           },
         ],
       }
