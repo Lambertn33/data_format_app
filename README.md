@@ -7,14 +7,13 @@
 </ul>
 
 <h3> After cloning the project: <h3>
-<p> 1. Navigate to the api folder <p>
-<p> 2. run npm i </p>
-<p> 3. open a terminal and run tsc --watch </p>
-<p> 4. open another terminal and run nom run start</p>
-  
-<p> 5. Navigate to the frontend project <p>
-<p> 2. run npm i </p>
-<p> 3. run npm run serve</p>
+ 1. Navigate to the api folder 
+ 2. run npm i
+ 3. open a terminal and run tsc --watch 
+ 4. open another terminal and run nom run start  
+5. Navigate to the frontend project
+6. run npm i 
+7. run npm run serve
   
   
 
