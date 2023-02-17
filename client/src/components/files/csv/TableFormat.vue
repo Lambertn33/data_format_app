@@ -2,7 +2,7 @@
  <div class="row py-4">
     <the-spinner v-if="isFetching"/>
     <div class="col-md-12" v-else>
-      <the-header />
+      <the-header :linkType="filesConstants.csv"/>
       <router-view />
        <the-table>
           <template #header>
@@ -36,6 +36,7 @@
       return {
         isFetching: false,
         csvFileContents: [],
+        filesConstants: filesConstants,
         csvTableHeaders: [
           '#', 'Name', 'Address', 'Post code', 'Phone', 'Credit Limit', 'Birthday'
         ]

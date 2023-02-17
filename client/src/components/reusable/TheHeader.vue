@@ -2,7 +2,7 @@
   <div class="header-container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item" v-for="link in csvFileLinks" :key="link.to">
+        <li class="breadcrumb-item" v-for="link in renderLinks" :key="link.to">
           <router-link :to="link.to" active-class="active">{{ link.label }}</router-link>
         </li>
       </ol>
@@ -11,19 +11,41 @@
 </template>
 
 <script>
+import filesConstants from '@/constants/files.constants';
+
   export default {
+    props: {
+      linkType: String
+    },
+
     data() {
       return {
         csvFileLinks: [
           {
             to: "/files/csv/table",
-            label: "View in table format"
+            label: "View Csv File in table format"
           },
           {
             to: "/files/csv/json",
-            label: "View in json format"
+            label: "View Csv File in json format"
+          },  
+        ],
+        prnFileLinks: [
+          {
+            to: "/files/prn/table",
+            label: "View PRN in table format"
+          },
+          {
+            to: "/files/prn/json",
+            label: "View PRN in json format"
           },  
         ]
+      }
+    },
+    computed: {
+      renderLinks() {
+         return this.linkType === filesConstants.csv ?
+          this.csvFileLinks : this.prnFileLinks;
       }
     }
   }

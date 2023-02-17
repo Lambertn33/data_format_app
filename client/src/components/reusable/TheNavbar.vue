@@ -23,7 +23,7 @@
         links: [
           {
             name: 'Read PRN file',
-            href: "/files/prn",
+            href: "/files/prn/table",
           },
           {
             name: 'Read CSV file',

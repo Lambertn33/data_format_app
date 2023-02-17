@@ -2,9 +2,9 @@
   <div class="row py-4">
      <the-spinner v-if="isFetching"/>
      <div class="col-md-12" v-else>
-       <the-header :linkType="filesConstants.csv"/>
+       <the-header :linkType="filesConstants.prn"/>
        <router-view />
-        <pre class="json-class">{{ csvFileContents }}</pre>
+        <pre class="json-class">{{ prnFileContents }}</pre>
      </div>
   </div>
  </template>
@@ -17,21 +17,21 @@
        return {
          isFetching: false,
          filesConstants: filesConstants,
-         csvFileContents: [],
+         prnFileContents: [],
        }
      },
  
      methods: {
-       async fetchCsvFileContent() {
+       async fetchPrnFileContent() {
          this.isFetching = true;
-         await this.$store.dispatch('fetchFileContents', filesConstants.csv);
+         await this.$store.dispatch('fetchFileContents', filesConstants.prn);
          this.isFetching = false;
        }, 
      },
  
      mounted() {
-      this.fetchCsvFileContent();
-      this.csvFileContents = this.$store.getters.getCsvFileContents;
+      this.fetchPrnFileContent();
+      this.prnFileContents = this.$store.getters.getPrnFileContents;
      },
    }
  </script>
